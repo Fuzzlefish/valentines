@@ -44,7 +44,7 @@ yesBtn.addEventListener("click", () => {
 
     document.querySelector(".letter-window").classList.add("final");
 
-    buttons.style.display = "none";
+    buttons.style.display = "";
 
     finalText.style.display = "block";
 });
