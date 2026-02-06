@@ -68,6 +68,7 @@ function submitAnswer() {
 
         quiz.style.display = "none";
         finalText.style.display = "block";
+        finalText.style.transform = "scale(0.75)";
         title.textContent = "To My Darling Girl"; 
         catImg.src = "myLove.jpeg";
         catImg.style.transition = "transform 0.5s ease";
