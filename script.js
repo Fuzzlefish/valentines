@@ -3,6 +3,9 @@ const envelope = document.getElementById("envelope-container");
 const letter = document.getElementById("letter-container");
 const noBtn = document.querySelector(".no-btn");
 const yesBtn = document.querySelector(".btn[alt='Yes']");
+const continueBtn = document.querySelector(".btn[alt='Continue']");
+const quiz = document.getElementById("quiz");
+const quizInput = document.getElementById("quiz-input");
 
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
@@ -10,23 +13,20 @@ const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
 // Click Envelope
-
 envelope.addEventListener("click", () => {
     envelope.style.display = "none";
     letter.style.display = "flex";
 
-    setTimeout( () => {
+    setTimeout(() => {
         document.querySelector(".letter-window").classList.add("open");
-    },50);
+    }, 50);
+
+    continueBtn.style.display = "none";
 });
 
-// Logic to move the NO btn
-
+// Move NO button
 noBtn.addEventListener("mouseover", () => {
-    const min = 200;
-    const max = 200;
-
-    const distance = Math.random() * (max - min) + min;
+    const distance = 200;
     const angle = Math.random() * Math.PI * 2;
 
     const moveX = Math.cos(angle) * distance;
@@ -36,29 +36,46 @@ noBtn.addEventListener("mouseover", () => {
     noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
 
-
+// YES click
 yesBtn.addEventListener("click", () => {
     title.textContent = "Good Girl 😛";
-
     catImg.src = "win-cat.jpg";
 
     document.querySelector(".letter-window").classList.add("final");
 
-    buttons.style.display = "";
-
-    finalText.style.display = "block";
+    noBtn.style.display = "none";
+    yesBtn.style.display = "none";
+    continueBtn.style.display = "block";
 });
 
-
+// CONTINUE click
 continueBtn.addEventListener("click", () => {
-    title.textContent = "Yippeeee!";
-
+    title.textContent = "Yippeeee! SHES MY VALENTINES WOOO";
     catImg.src = "cat_dance.gif";
 
-    document.querySelector(".letter-window").classList.add("final");
-
     buttons.style.display = "none";
-
-    finalText.style.display = "block";
+    quiz.style.display = "block";
 });
 
+// QUIZ LOGIC
+function submitAnswer() {
+    const userAnswer = quizInput.value.trim().toLowerCase();
+    const correctAnswer = "everything";
+
+    if (userAnswer === correctAnswer) {
+        alert("Correct ❤️ Of course it's everything!");
+        localStorage.setItem("quizAnswer", userAnswer);
+
+        quiz.style.display = "none";
+        finalText.style.display = "block";
+        title.textContent = "To My Darling Girl"; 
+        catImg.src = "myLove.jpeg";
+        catImg.style.transition = "transform 0.5s ease";
+        catImg.style.transform = "rotate(270deg) scale(1.5)";
+        
+    } else {
+        alert("Nope 😛 Try again!");
+        quizInput.value = "";
+        quizInput.focus();
+    }
+}

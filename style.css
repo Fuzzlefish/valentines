@@ -105,7 +105,12 @@ p {
     width: 120px;
     cursor: pointer;
     user-select: none;
+    transition: transform 0.15s ease;
 }
+.btn:hover {
+    transform: scale(1.1);
+}
+
 
 .yes-btn,
 .no-btn {
@@ -133,6 +138,14 @@ display: inline-block;
     line-height: 1.4;
     text-align: center;
     display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255,240,240,0.5);
+    border-radius: 12px;
+}
+
+.quiz{
+    font-size: 22px;
+    line-height: 1.4;    
     padding: 10px 20px;
     background-color: rgba(255,240,240,0.5);
     border-radius: 12px;
